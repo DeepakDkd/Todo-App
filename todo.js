@@ -72,12 +72,17 @@ function remove() {
             let objidx = todolist.findIndex(item => item.id == i.target.id)
             todolist.splice(objidx, 1);
             localStorage.setItem("todo", JSON.stringify(todolist));
+            settitle.value = ''
+            setdesc.value = ''
+            update.style.display = 'none';
+            cancel.style.display = 'none';
+            addtodo.style.display = 'block';
+            clrfield.style.display = 'block';
             showtodo();
 
         })
     });
-    settitle.value = ''
-    setdesc.value = ''
+
 }
 
 
