@@ -86,7 +86,7 @@ section{
     align-items: center;
 }
 .todo{
-    width: 700px;
+    width: 600px;
     border-radius: 10px;
     margin-top: 20px;
     background-color: rgba(70, 67, 67, 0.594);
@@ -150,12 +150,20 @@ section{
     display: none;
 }
 @media (max-width:750px) {
+    header{
+        height: 60px;
+    }
     .todoinput{
-        width: 90% !important;
+        width: 90%;
 
     }
     .todo{
-        width: 90vw;
+        width: 90%;
     }
-    
+    h1{
+        font-size: 1.5rem;
+    }
+    .datetime{
+        font-size: 10px;
+    }
 }
