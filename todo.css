@@ -3,13 +3,14 @@ body,html{
     height: 100%;
     font-family: 'Courier New', Courier, monospace;
     background-image: url('https://w0.peakpx.com/wallpaper/816/391/HD-wallpaper-wooden-texture-brown-wood-boards-wood-material.jpg');
-
+    transition: 1.2s;
 }
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    
 }
 
 header{
@@ -96,16 +97,30 @@ section{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    transition: 0.5s ease-in-out;
+    animation-name: todofx;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    z-index: 10;
+
     
-    transition: 0.2s ease-in-out;
+}
+@keyframes todofx {
+    from{
+        transform: translateY(-10%);
+        z-index: -1;
+    }
+    to{
+        transform: translateY(0%);
+    }
 }
 .todo:hover{
-    transform: scale(1.04);
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.852);
+    transform: scale(1.02);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.87);
     background-color: rgba(99, 96, 96, 0.594);
 }
 .todo h1{
-    border-bottom: 3px solid black;
+    border-bottom: 1px solid black;
 }
 .todo p{
     font-size: 1.5rem;
@@ -115,16 +130,24 @@ section{
     width: 100%;
     display: flex;
     justify-content: end;
-    gap: 10px;
+    gap: 20px;
 }
 .icons i{
     font-size: 1.5rem;
     
 }
 .icons i:hover{
-    /* color: rgba(205, 23, 23, 0.662); */
     transform: scale(1.1);
     transition: 0.3s ease-in-out;
+}
+.datetime{
+    padding-top: 5px;
+}
+#update,#cancel{
+    display: none;
+}
+.hide{
+    display: none;
 }
 @media (max-width:750px) {
     .todoinput{
