@@ -48,7 +48,7 @@ function showtodo() {
                 <i id="${i.id}"  class="ri-delete-bin-2-fill"></i>
             </div>
             <h1 id="todotitle">✪ ${i.title}</h1>
-            <p id="tododesc">• ${i.desc}</p>
+            <p id="tododesc">${i.desc}</p>
             
         </div>`;
 
@@ -109,7 +109,7 @@ function edit() {
         })
     })
     update.addEventListener('click', () => {
-        if (settitle.value && setdesc.value){
+        if (settitle.value && setdesc.value) {
             todolist[index].title = settitle.value;
             todolist[index].desc = setdesc.value;
             settitle.value = ''
