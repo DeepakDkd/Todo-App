@@ -10,6 +10,7 @@ let desc = document.querySelector('#tododesc');
 let update = document.querySelector('#update')
 let cancel = document.querySelector('#cancel')
 
+
 clrfield.addEventListener('click', () => {
     settitle.value = ''
     setdesc.value = ''
@@ -24,7 +25,7 @@ addtodo.addEventListener('click', () => {
         let date = new Date().toLocaleDateString();
         let time = new Date().toLocaleTimeString();
         let todoid = Math.random().toString(36).slice(-5)
-        let obj = { id: todoid, title: settitle.value, desc: setdesc.value, date: date, time: time }
+        let obj = { id: todoid, title: settitle.value, desc: setdesc.value, date: date, time: time, checked: "" }
         settitle.value = ''
         setdesc.value = ''
         todolist.push(obj);
@@ -49,15 +50,20 @@ function showtodo() {
             </div>
             <h1 id="todotitle">✪ ${i.title}</h1>
             <p id="tododesc">${i.desc}</p>
+            <input type="checkbox" class="check" id="${i.id}" ${i.checked}>
+
             
         </div>`;
 
         }
+        todolist.reverse();
     }
 
 
-    remove()
+    remove();
     edit();
+    // check();
+    checkbox();
 }
 showtodo();
 
@@ -119,6 +125,10 @@ function edit() {
             todolist[index].desc = setdesc.value;
             settitle.value = ''
             setdesc.value = ''
+            update.style.display = 'none';
+            cancel.style.display = 'none';
+            addtodo.style.display = 'block';
+            clrfield.style.display = 'block';
             localStorage.setItem("todo", JSON.stringify(todolist))
             showtodo();
         }
@@ -135,3 +145,40 @@ function edit() {
 
 }
 
+function checkbox() {
+
+    let check = document.querySelectorAll('.check');
+    let fill = document.querySelector('.fill');
+
+    let checkarr = Array.from(check)
+    let index;
+    let total = 0;
+    let cnt = 0;
+    checkarr.forEach((e) => {
+        e.addEventListener('change', (ck) => {
+            index = todolist.findIndex(item => item.id == ck.target.id)
+            if (ck.target.checked) {
+                console.log('clicked on checkbox')
+                todolist[index].checked = 'checked';
+                console.log(todolist[index])
+
+            }
+            else {
+                console.log('removed')
+                todolist[index].checked = 'unchecked';
+                console.log(todolist[index])
+            }
+            localStorage.setItem("todo", JSON.stringify(todolist));
+            showtodo();
+        })
+
+        total++;
+
+        if (e.checked) {
+            cnt++;
+
+        }
+    })
+    let rangeWidth = (cnt * 100) / total;
+    fill.style.width = `${rangeWidth}%`;
+}

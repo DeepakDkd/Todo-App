@@ -139,7 +139,7 @@ section {
     width: 100%;
     display: flex;
     justify-content: end;
-    gap: 20px;
+    gap: 10px;
     background-color: rgba(28, 28, 28, 0.826);
     position: absolute;
     left: 0px;
@@ -160,11 +160,35 @@ section {
 
 .datetime {
     padding-top: 5px;
+    font-size: 12px;
 }
-
 #update,
 #cancel {
     display: none;
+}
+
+.range{
+    width: 90%;
+    height: 20px;
+    background-color: black;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: start;
+    border: 1px solid;
+
+}
+.fill{
+    width: 0%;
+    background-image: linear-gradient(to bottom right, green, red);
+    opacity: 0.8;
+    border-radius: 10px;
+    height: 20px;
+}
+.check{
+    height: 20px;
+    width: 20px;
+    margin-bottom: 10px;
 }
 
 .hide {
