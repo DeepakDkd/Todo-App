@@ -169,13 +169,10 @@ function checkbox() {
         e.addEventListener('change', (ck) => {
             index = todolist.findIndex(item => item.id == ck.target.id)
             if (ck.target.checked) {
-                console.log('clicked on checkbox')
                 todolist[index].checked = 'checked';
-                console.log(todolist[index])
 
             }
             else {
-                console.log('removed')
                 todolist[index].checked = 'unchecked';
                 console.log(todolist[index])
             }
