@@ -9,6 +9,9 @@ let title = document.querySelector('#todotitle');
 let desc = document.querySelector('#tododesc');
 let update = document.querySelector('#update')
 let cancel = document.querySelector('#cancel')
+let todo_status = document.querySelector('.todo-status')
+let todo_range = document.querySelector('.range')
+let todo_range_status = document.querySelector('.todo-range-status')
 
 
 clrfield.addEventListener('click', () => {
@@ -38,6 +41,16 @@ addtodo.addEventListener('click', () => {
 function showtodo() {
     if (localStorage.getItem("todo") !== null) {
         todolist = JSON.parse(localStorage.getItem("todo"));
+        if(todolist==0){
+        todo_range.style.display = 'none';
+        todo_range_status.style.display = 'none';
+        todo_status.style.display = 'block';
+        }
+        else{
+            todo_status.style.display = 'none';
+            todo_range_status.style.display = 'block';
+            todo_range.style.display = 'block';
+        }
         todolist.reverse();
         sectionn.innerHTML = ''
         for (i of todolist) {
@@ -62,7 +75,6 @@ function showtodo() {
 
     remove();
     edit();
-    // check();
     checkbox();
 }
 showtodo();
@@ -74,7 +86,6 @@ function remove() {
 
 
         element.addEventListener('click', (i) => {
-            console.log(i.target.id)
             let objidx = todolist.findIndex(item => item.id == i.target.id)
             todolist.splice(objidx, 1);
             localStorage.setItem("todo", JSON.stringify(todolist));
@@ -180,5 +191,7 @@ function checkbox() {
         }
     })
     let rangeWidth = (cnt * 100) / total;
+    todo_range_status.innerHTML=`Completed : ${rangeWidth}%`;
     fill.style.width = `${rangeWidth}%`;
+
 }

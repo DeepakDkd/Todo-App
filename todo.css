@@ -183,7 +183,7 @@ section {
     background-image: linear-gradient(to bottom right, green, red);
     opacity: 0.8;
     border-radius: 10px;
-    height: 20px;
+    height: 100%;
 }
 .check{
     height: 20px;
