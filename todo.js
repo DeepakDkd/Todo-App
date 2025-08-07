@@ -14,12 +14,18 @@ let todo_range = document.querySelector('.range')
 let todo_range_status = document.querySelector('.todo-range-status')
 
 
+settitle.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        setdesc.focus();
+    }
+});
 clrfield.addEventListener('click', () => {
     settitle.value = ''
     setdesc.value = ''
 })
-
 addtodo.addEventListener('click', () => {
+    console.log(settitle.value, setdesc.value);
     if (settitle.value && setdesc.value) {
 
         if (localStorage.getItem("todo")) {
@@ -28,9 +34,12 @@ addtodo.addEventListener('click', () => {
         let date = new Date().toLocaleDateString();
         let time = new Date().toLocaleTimeString();
         let todoid = Math.random().toString(36).slice(-5)
+        let descJson = setdesc.value.split('\n');
+        setdesc.value = descJson.join('<br>');
         let obj = { id: todoid, title: settitle.value, desc: setdesc.value, date: date, time: time, checked: "" }
         settitle.value = ''
         setdesc.value = ''
+        console.log(obj);
         todolist.push(obj);
         localStorage.setItem("todo", JSON.stringify(todolist));
         showtodo();
@@ -107,13 +116,15 @@ function edit() {
 
     let edittodo = document.querySelectorAll('.ri-edit-2-fill');
     let index;
+        const parser = new DOMParser();
     edittodo.forEach(elem => {
         elem.addEventListener('click', (e) => {
 
             index = todolist.findIndex(item => item.id == e.target.id)
             var id = e.target.id;
             settitle.value = todolist[index].title
-            setdesc.value = todolist[index].desc
+            const htmlString = todolist[index].desc.replace(/<br>/g, '\n');
+            setdesc.value = htmlString;
             update.style.display = 'block';
             cancel.style.display = 'block';
             addtodo.style.display = 'none';
@@ -130,10 +141,11 @@ function edit() {
 
         })
     })
-    update.addEventListener('click', () => {
+    update.addEventListener('click', () => { 
         if (settitle.value && setdesc.value) {
             todolist[index].title = settitle.value;
-            todolist[index].desc = setdesc.value;
+            const htmlString = setdesc.value.replace(/\n/g, '<br>');
+            todolist[index].desc = htmlString;
             settitle.value = ''
             setdesc.value = ''
             update.style.display = 'none';
@@ -188,7 +200,18 @@ function checkbox() {
         }
     })
     let rangeWidth = (cnt * 100) / total;
-    todo_range_status.innerHTML=`Completed : ${rangeWidth}%`;
+    if(todolist.length == 0){
+        todo_range.style.display = 'none';
+        todo_range_status.style.display = 'none';
+        todo_status.style.display = 'block';
+        return;
+    }
+    // if( !rangeWidth){
+    //     todo_range.style.display = 'none';
+    //     todo_range_status.style.display = 'none';
+    //     todo_status.style.display = 'block';
+    // }
+    todo_range_status.innerHTML=`Completed : ${rangeWidth.toFixed(0)}%`;
     fill.style.width = `${rangeWidth}%`;
 
 }

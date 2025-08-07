@@ -42,7 +42,7 @@ main {
 
 .todoinput {
     width: 500px;
-    height: 300px;
+    height: 400px;
     background-color: rgba(125, 113, 113, 0.68);
     border-radius: 10px;
     margin-top: 30px;
@@ -57,14 +57,22 @@ main {
     box-shadow: 10px 20px rgba(0, 0, 0, 0.838);
 }
 
-.todoinput input {
+.todoinput input ,textarea{
     width: 70%;
+    min-width: 70%;
+    max-width: 70%;
     height: 50px;
+    min-height: 50px;
     outline: none;
     border: none;
     border-radius: 10px;
-    text-align: center;
+    padding: 2px 10px;
+    /* text-align: center; */
     font-size: 1rem;
+}
+.todoinput textarea {
+    height: 100px;
+    resize: none;
 }
 
 .taskbtn {
