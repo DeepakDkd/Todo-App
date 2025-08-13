@@ -58,9 +58,9 @@ main {
 }
 
 .todoinput input ,textarea{
-    width: 70%;
-    min-width: 70%;
-    max-width: 70%;
+    width: 90%;
+    min-width: 90%;
+    max-width: 90%;
     height: 50px;
     min-height: 50px;
     outline: none;
@@ -138,7 +138,7 @@ section {
 }
 
 .todo h1 {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #000000;
     margin-top: 50px;
 }
 
@@ -215,6 +215,11 @@ section {
     .todoinput {
         width: 90%;
 
+    }
+    .todoinput input, textarea {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
     }
 
     .todo {
